@@ -1,0 +1,99 @@
+﻿<Page
+    x:Class="MH_UWPFundamentals.Views.Profile"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MH_UWPFundamentals.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <!--VISIBLE PART OF PAGE-->
+    <Grid Style="{StaticResource PageContainer}">
+        <Grid.RowDefinitions>
+            <!--HEADER-->
+            <RowDefinition Height="Auto"/>
+            <!--SUBHEADER-->
+            <RowDefinition Height="Auto"/>
+            <!--BODY-->
+            <RowDefinition Height="*"/>
+            <!--BOTTOM APP BAR-->
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+
+        <!--PAGE HEADER SECTION-->
+        <Rectangle Style="{StaticResource BlackMargin}"/>
+        <Button Name="BackButton"
+                Style="{StaticResource BackButton}"
+                Click="BackButton_Click"/>
+        <TextBlock Name="TBPageTitle"
+                   Style="{StaticResource PageHeader}"/>
+        <TextBlock Style="{StaticResource PageSubHeader}">Your personal academy space</TextBlock>
+        <Button Name="EditDetails"
+                Grid.Column="1"
+                Grid.Row="1"
+                HorizontalAlignment="Right"
+                Content="Edit Details"
+                Click="EditDetails_Click"/>
+
+        <!--MAIN CONTENT SECTION-->
+        <StackPanel Grid.Column="1"
+                    Grid.Row="2"
+                    Style="{StaticResource FormContainer}">
+            <!--SECTION TO SHOW USER SETTINGS-->
+            <StackPanel Name="ViewSection">
+                <TextBlock Style="{StaticResource Label}">Instructor:</TextBlock>
+                <TextBlock Name="UserName"
+                       Style="{StaticResource DetailLabel}"/>
+            </StackPanel>
+            <!--SECTION TO EDIT USER SETTINGS-->
+            <StackPanel Name="EditSection"
+                        Style="{StaticResource FormContainer}">
+                <TextBlock Style="{StaticResource Label}">Instructor:</TextBlock>
+                <TextBox Name="EditUserName"
+                         Style="{StaticResource NormalTextBox}"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button Name="SaveUser"
+                            Click="SaveUser_Click"
+                            Content="Save"
+                            Margin="0,0,5,0"/>
+                    <Button Name="Cancel"
+                            Click="Cancel_Click"
+                            Content="Cancel"
+                            Margin="5,0,0,0"/>
+                </StackPanel>
+            </StackPanel>
+            <Button Name="ResetProfile"
+                    Content="Reset Academy Profile"
+                    Click="ResetProfile_Click"
+                    Margin="10"/>
+        </StackPanel>
+
+        <!--VISUAL STATES-->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="NarrowLayout">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TBPageTitle.FontSize" Value="35"/>
+                        <Setter Target="TBPageTitle.Height" Value="Auto"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="WideLayout">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="800"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TBPageTitle.FontSize" Value="45"/>
+                        <Setter Target="TBPageTitle.Height" Value="100"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>
